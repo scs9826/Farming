@@ -31,7 +31,7 @@
             android:id="@+id/indredient_add"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/加"
+            android:src="@drawable/ad"
             android:layout_gravity="center"/>
 
     </LinearLayout>

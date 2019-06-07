@@ -21,7 +21,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="40dp"
-            android:src="@drawable/农场主" />
+            android:src="@drawable/admin" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,17 +67,17 @@
 
             <Button
                 style="@style/imageButtonStyle"
-                android:background="@drawable/土地管理" />
+                android:background="@drawable/land_manage" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/生产材料" />
+                android:background="@drawable/shengchancailiao" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/肥料" />
+                android:background="@drawable/feiliao" />
 
         </LinearLayout>
 
@@ -92,17 +92,17 @@
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/生产计划管理" />
+                android:background="@drawable/shengchanjihuaguan" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/农作记录管理" />
+                android:background="@drawable/farm_record" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/实际采收" />
+                android:background="@drawable/shijicaishou" />
 
         </LinearLayout>
 
@@ -116,17 +116,17 @@
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/提醒" />
+                android:background="@drawable/tixing" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/预计采收" />
+                android:background="@drawable/yujicaishou" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/统计盈亏" />
+                android:background="@drawable/tongjiyingkui" />
 
         </LinearLayout>
 

@@ -21,7 +21,7 @@
             android:layout_marginRight="10dp"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:src="@drawable/市场人员"/>
+            android:src="@drawable/shichangrenyuan"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,13 +65,13 @@
 
             <Button
                 style="@style/imageButtonStyle"
-                android:background="@drawable/实际采收"/>
+                android:background="@drawable/shijicaishou"/>
             <Button
                 style="@style/imageButtonStyle"
-                android:background="@drawable/预计采收"/>
+                android:background="@drawable/yujicaishou"/>
             <Button
                 style="@style/imageButtonStyle"
-                android:background="@drawable/统计盈亏"/>
+                android:background="@drawable/tongjiyingkui"/>
 
         </LinearLayout>
 
@@ -84,7 +84,7 @@
 
             <Button
                 style="@style/imageButtonStyle"
-                android:background="@drawable/提醒"/>
+                android:background="@drawable/tixing"/>
 
         </LinearLayout>
     </LinearLayout>

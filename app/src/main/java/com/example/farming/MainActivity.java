@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -43,14 +44,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     public void onClick(View v) {
+        int identity = 0;
         if ( v == button2 ) {
-            // Handle clicks for 技术员
-        } else if ( v == button3 ) {
             // Handle clicks for 市场人员
+            identity = 3;
+        } else if ( v == button3 ) {
+            // Handle clicks for 技术员
+            identity = 2;
         } else if ( v == button4 ) {
             // Handle clicks for 游客
+            identity = 4;
         } else if ( v == button ) {
-            // Handle clicks for 农场主
+            // Handle clicks for admin
+            identity = 1;
+        }
+        if (identity == 4) {
+            Toast.makeText(this, "游客不用注册，请直接使用账号明guest登陆", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            intent.putExtra("identity", identity);
+            startActivity(intent);
+            finish();
         }
     }
 

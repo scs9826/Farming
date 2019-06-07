@@ -8,6 +8,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.farming.constants.Constants;
+import com.example.farming.constants.HttpStatus;
+import com.example.farming.entity.DataResult;
+import com.example.farming.entity.UserInfo;
+import com.example.farming.util.SingleTopRetrofit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,17 +39,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * (http://www.buzzingandroid.com/tools/android-layout-finder)
      */
     private void findViews() {
-        textView3 = (TextView)findViewById( R.id.textView3 );
-        textView4 = (TextView)findViewById( R.id.textView4 );
-        editText2 = (EditText)findViewById( R.id.editText2 );
-        textView = (TextView)findViewById( R.id.textView );
-        editText = (EditText)findViewById( R.id.editText );
-        logIn = (Button)findViewById( R.id.log_in );
-        register = (Button)findViewById( R.id.register );
-        guideline = (Guideline)findViewById( R.id.guideline );
+        textView3 = (TextView) findViewById(R.id.textView3);
+        textView4 = (TextView) findViewById(R.id.textView4);
+        editText2 = (EditText) findViewById(R.id.editText2);
+        textView = (TextView) findViewById(R.id.textView);
+        editText = (EditText) findViewById(R.id.editText);
+        logIn = (Button) findViewById(R.id.log_in);
+        register = (Button) findViewById(R.id.register);
+        guideline = (Guideline) findViewById(R.id.guideline);
 
-        logIn.setOnClickListener( this );
-        register.setOnClickListener( this );
+        logIn.setOnClickListener(this);
+        register.setOnClickListener(this);
     }
 
     /**
@@ -48,11 +60,59 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     @Override
     public void onClick(View v) {
-        if ( v == logIn ) {
+        if (v == logIn) {
             // Handle clicks for logIn
             String name = editText.getText().toString();
             String password = editText2.getText().toString();
-        } else if ( v == register ) {
+            Retrofit retrofit = SingleTopRetrofit.getInstance();
+            final LoginService service = retrofit.create(LoginService.class);
+            UserInfo userInfo = new UserInfo();
+            userInfo.setuName(name);
+            userInfo.setuPassword(password);
+            Call<DataResult<Byte>> call = service.login(userInfo);
+            call.enqueue(new Callback<DataResult<Byte>>() {
+                @Override
+                public void onResponse(Call<DataResult<Byte>> call, Response<DataResult<Byte>> response) {
+                    DataResult<Byte> dataResult = response.body();
+                    if (dataResult == null || dataResult.getStatus() == HttpStatus.HTTP_STATUS_AUTHORITY) {
+                        Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    byte byt = dataResult.getData();
+                    switch (byt) {
+                        default:
+                            Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+                            break;
+                        case Constants.ADMIN:
+                            Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
+                            startActivity(intent);
+                            finish();
+                            break;
+                        case Constants.TECH:
+                            Intent intent1 = new Intent(LoginActivity.this, TechMainActivity.class);
+                            startActivity(intent1);
+                            finish();
+                            break;
+                        case Constants.MARKET:
+                            Intent intent2 = new Intent(LoginActivity.this, MarketMainActivity.class);
+                            startActivity(intent2);
+                            finish();
+                            break;
+                        case Constants.GUEST:
+                            Intent intent3 = new Intent(LoginActivity.this, GuestMainActivity.class);
+                            startActivity(intent3);
+                            finish();
+                            break;
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DataResult<Byte>> call, Throwable t) {
+                    Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else if (v == register) {
             // Handle clicks for register
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
@@ -65,6 +125,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         findViews();
+        initView();
+    }
+
+    private void initView() {
+        editText.setText(getIntent().getStringExtra("userName") == null ? "" : getIntent().getStringExtra("userName"));
+        editText2.setText(getIntent().getStringExtra("pwd") == null ? "" : getIntent().getStringExtra("pwd"));
     }
 
 }

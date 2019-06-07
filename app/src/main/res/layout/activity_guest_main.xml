@@ -21,7 +21,7 @@
             android:layout_marginRight="10dp"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:src="@drawable/游客"/>
+            android:src="@drawable/youke"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,13 +59,13 @@
 
         <Button
             style="@style/imageButtonStyle"
-            android:background="@drawable/提醒"/>
+            android:background="@drawable/tixing"/>
         <Button
             style="@style/imageButtonStyle"
-            android:background="@drawable/生产计划管理"/>
+            android:background="@drawable/shengchanjihuaguan"/>
         <Button
             style="@style/imageButtonStyle"
-            android:background="@drawable/蔬菜"/>
+            android:background="@drawable/yujicaishou"/>
 
     </LinearLayout>
 

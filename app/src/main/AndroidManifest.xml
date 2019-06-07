@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.farming">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,18 +13,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddIngredientActivity"/>
-        <activity android:name=".IngredientListActivity" />
-        <activity android:name=".LandAdd" />
-        <activity android:name=".LandManagerActivity" />
-        <activity android:name=".BlockListActivity" />
-        <activity android:name=".TagListActivity" />
-        <activity android:name=".MarketMainActivity" />
-        <activity android:name=".TechMainActivity" />
-        <activity android:name=".AdminMainActivity" />
-        <activity android:name=".GuestMainActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".RegisterActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".AddIngredientActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".IngredientListActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".LandAdd"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".LandManagerActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".BlockListActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".TagListActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".MarketMainActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".TechMainActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".AdminMainActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".GuestMainActivity"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/FullScreen" />
+        <activity android:name=".LoginActivity"
+            android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

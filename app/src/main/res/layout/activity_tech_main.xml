@@ -4,49 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GuestMainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".GuestMainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="130dp"
+        android:layout_gravity="center_vertical"
         android:background="#2A812E"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical">
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
-            android:layout_marginRight="10dp"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:src="@drawable/技术人员"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/jishurenyuan" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:text="技术人员"
             android:textColor="#ffffff"
-            android:textSize="29sp"
-            android:layout_marginTop="15dp" />
+            android:textSize="29sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:orientation="horizontal"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/notice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="lalalala"
-            android:padding="20dp"/>
+            android:padding="20dp"
+            android:text="lalalala" />
 
     </LinearLayout>
 
@@ -67,17 +67,17 @@
 
             <Button
                 style="@style/imageButtonStyle"
-                android:background="@drawable/土地管理" />
+                android:background="@drawable/land_manage" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/生产材料" />
+                android:background="@drawable/shengchancailiao" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/肥料" />
+                android:background="@drawable/feiliao" />
 
         </LinearLayout>
 
@@ -92,17 +92,17 @@
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/生产计划管理" />
+                android:background="@drawable/shengchanjihuaguan" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/农作记录管理" />
+                android:background="@drawable/farm_record" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/实际采收" />
+                android:background="@drawable/shijicaishou" />
 
         </LinearLayout>
 
@@ -117,17 +117,17 @@
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/提醒" />
+                android:background="@drawable/tixing" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/预计采收" />
+                android:background="@drawable/yujicaishou" />
 
             <Button
                 style="@style/imageButtonStyle"
 
-                android:background="@drawable/盈亏" />
+                android:background="@drawable/tongjiyingkui" />
 
         </LinearLayout>
 
