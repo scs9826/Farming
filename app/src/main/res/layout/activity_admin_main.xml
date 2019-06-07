@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GuestMainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_gravity="center_vertical"
+        android:background="#2A812E"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/农场主" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="农场主"
+            android:textColor="#ffffff"
+            android:textSize="29sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/notice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="lalalala"
+            android:padding="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="00dp">
+
+            <Button
+                style="@style/imageButtonStyle"
+                android:background="@drawable/土地管理" />
+
+            <Button
+                style="@style/imageButtonStyle"
+
+                android:background="@drawable/生产材料" />
+
+            <Button
+                style="@style/imageButtonStyle"
+
+                android:background="@drawable/肥料" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <Button
+                style="@style/imageButtonStyle"
+
+                android:background="@drawable/生产计划管理" />
+
+            <Button
+                style="@style/imageButtonStyle"
+
+                android:background="@drawable/农作记录管理" />
+
+            <Button
+                style="@style/imageButtonStyle"
+
+                android:background="@drawable/实际采收" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                style="@style/imageButtonStyle"
+
+                android:background="@drawable/提醒" />
+
+            <Button
+                style="@style/imageButtonStyle"
+
+                android:background="@drawable/预计采收" />
+
+            <Button
+                style="@style/imageButtonStyle"
+
+                android:background="@drawable/统计盈亏" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

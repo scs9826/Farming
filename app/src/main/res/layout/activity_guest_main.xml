@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GuestMainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="#2A812E"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:src="@drawable/游客"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="游客"
+            android:textColor="#ffffff"
+            android:textSize="29sp"
+            android:layout_marginTop="15dp" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/notice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="lalalala"
+            android:padding="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <Button
+            style="@style/imageButtonStyle"
+            android:background="@drawable/提醒"/>
+        <Button
+            style="@style/imageButtonStyle"
+            android:background="@drawable/生产计划管理"/>
+        <Button
+            style="@style/imageButtonStyle"
+            android:background="@drawable/蔬菜"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
