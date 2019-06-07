@@ -42,7 +42,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/notice"
+            android:id="@+id/gust_notice_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="lalalala"
@@ -58,12 +58,15 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/gust_notice_button"
             style="@style/imageButtonStyle"
             android:background="@drawable/tixing"/>
         <Button
+            android:id="@+id/gust_plan"
             style="@style/imageButtonStyle"
             android:background="@drawable/shengchanjihuaguan"/>
         <Button
+            android:id="@+id/gust_predict_harvest"
             style="@style/imageButtonStyle"
             android:background="@drawable/yujicaishou"/>
 

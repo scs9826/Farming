@@ -42,7 +42,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/notice"
+            android:id="@+id/admin_notice_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="lalalala"
@@ -66,15 +66,18 @@
             android:padding="00dp">
 
             <Button
+                android:id="@+id/admin_land"
                 style="@style/imageButtonStyle"
                 android:background="@drawable/land_manage" />
 
             <Button
+                android:id="@+id/admin_purchase"
                 style="@style/imageButtonStyle"
 
                 android:background="@drawable/shengchancailiao" />
 
             <Button
+                android:id="@+id/admin_ingredient"
                 style="@style/imageButtonStyle"
 
                 android:background="@drawable/feiliao" />
@@ -90,16 +93,19 @@
             android:padding="10dp">
 
             <Button
+                android:id="@+id/admin_plan"
                 style="@style/imageButtonStyle"
 
                 android:background="@drawable/shengchanjihuaguan" />
 
             <Button
+                android:id="@+id/admin_farmwork"
                 style="@style/imageButtonStyle"
 
                 android:background="@drawable/farm_record" />
 
             <Button
+                android:id="@+id/admin_real_harvest"
                 style="@style/imageButtonStyle"
 
                 android:background="@drawable/shijicaishou" />
@@ -114,16 +120,19 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/admin_notice_button"
                 style="@style/imageButtonStyle"
 
                 android:background="@drawable/tixing" />
 
             <Button
+                android:id="@+id/admin_predict_harvest"
                 style="@style/imageButtonStyle"
 
                 android:background="@drawable/yujicaishou" />
 
             <Button
+                android:id="@+id/admin_profit"
                 style="@style/imageButtonStyle"
 
                 android:background="@drawable/tongjiyingkui" />

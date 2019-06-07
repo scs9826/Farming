@@ -27,6 +27,7 @@
             android:textSize="29sp" />
 
         <ImageView
+            android:id="@+id/land_tag_add"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ad"
