@@ -1,7 +1,6 @@
 package com.example.farming.constants;
 
 public class Constants {
-//    public static final String BASE_URL = "http://218.199.68.173:9827";
     public static final String BASE_URL = "http://10.0.2.2";
 
     public static final byte ADMIN = 1;
