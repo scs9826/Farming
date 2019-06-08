@@ -1,6 +1,7 @@
 package com.example.farming.http;
 
 import com.example.farming.entity.DataResult;
+import com.example.farming.entity.Ingredient;
 import com.example.farming.entity.LandInfo;
 import com.example.farming.entity.PurchaseRecord;
 
@@ -34,4 +35,8 @@ public interface AdminService {
     @POST("admin/delProduct")
     @FormUrlEncoded
     Call<DataResult<Boolean>> addProduct(@Field(value = "id", encoded = true) long id);
+
+    @POST("admin/findIngredient")
+    Call<DataResult<List<Ingredient>>> findIngredient();
+
 }

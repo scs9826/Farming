@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
-public class IngredientListActivity extends AppCompatActivity implements View.OnClickListener {
+public class IngredientListActivity extends AppCompatActivity {
     private ImageView indredientAdd;
     private RecyclerView ingredientRecyclerview;
 
