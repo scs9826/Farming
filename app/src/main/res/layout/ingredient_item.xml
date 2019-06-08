@@ -2,22 +2,65 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="101dp"
+    android:layout_height="200dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:textSize="16sp"
+                android:text="name"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:textSize="16sp"
+                android:text="date"/>
+
+            <TextView
+                android:id="@+id/delete"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="#E0001A"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/region"
+                android:id="@+id/checken"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -28,7 +71,17 @@
 
 
             <TextView
-                android:id="@+id/block"
+                android:id="@+id/horse"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:text="lalala"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/ox"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -44,11 +97,11 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tag"
+                android:id="@+id/cake"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -59,7 +112,17 @@
 
 
             <TextView
-                android:id="@+id/palce"
+                android:id="@+id/husk"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:text="lalala"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/shell"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -74,11 +137,11 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tag"
+                android:id="@+id/srtaw"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -89,7 +152,7 @@
 
 
             <TextView
-                android:id="@+id/palce"
+                android:id="@+id/sawdust"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -97,17 +160,59 @@
                 android:paddingTop="15dp"
                 android:text="lalala"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/water"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:text="lalala"
+                android:textSize="16sp" />
+
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/delete"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="#E0001A"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:text="删除"
-            android:textColor="#ffffff"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="150dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/leaf"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:text="lalala"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/fee"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:text="lalala"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/loss_ratio"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:text="lalala"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
