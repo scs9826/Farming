@@ -10,10 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.farming.constants.CacheUtils;
 import com.example.farming.constants.Constants;
 import com.example.farming.constants.HttpStatus;
 import com.example.farming.entity.DataResult;
 import com.example.farming.entity.UserInfo;
+import com.example.farming.http.LoginService;
 import com.example.farming.util.SingleTopRetrofit;
 
 import retrofit2.Call;
@@ -66,19 +68,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String password = editText2.getText().toString();
             Retrofit retrofit = SingleTopRetrofit.getInstance();
             final LoginService service = retrofit.create(LoginService.class);
-            UserInfo userInfo = new UserInfo();
+            final UserInfo userInfo = new UserInfo();
             userInfo.setuName(name);
             userInfo.setuPassword(password);
-            Call<DataResult<Byte>> call = service.login(userInfo);
-            call.enqueue(new Callback<DataResult<Byte>>() {
+            Call<DataResult<UserInfo>> call = service.login(userInfo);
+            call.enqueue(new Callback<DataResult<UserInfo>>() {
                 @Override
-                public void onResponse(Call<DataResult<Byte>> call, Response<DataResult<Byte>> response) {
-                    DataResult<Byte> dataResult = response.body();
+                public void onResponse(Call<DataResult<UserInfo>> call, Response<DataResult<UserInfo>> response) {
+                    DataResult<UserInfo> dataResult = response.body();
                     if (dataResult == null || dataResult.getStatus() == HttpStatus.HTTP_STATUS_AUTHORITY) {
                         Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    byte byt = dataResult.getData();
+                    byte byt = dataResult.getData().getIdentity();
                     switch (byt) {
                         default:
                             Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
@@ -86,21 +88,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         case Constants.ADMIN:
                             Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
                             startActivity(intent);
+                            CacheUtils.putUserInfo(userInfo, LoginActivity.this);
                             finish();
                             break;
                         case Constants.TECH:
                             Intent intent1 = new Intent(LoginActivity.this, TechMainActivity.class);
                             startActivity(intent1);
+                            CacheUtils.putUserInfo(userInfo, LoginActivity.this);
                             finish();
                             break;
                         case Constants.MARKET:
                             Intent intent2 = new Intent(LoginActivity.this, MarketMainActivity.class);
                             startActivity(intent2);
+                            CacheUtils.putUserInfo(userInfo, LoginActivity.this);
                             finish();
                             break;
                         case Constants.GUEST:
                             Intent intent3 = new Intent(LoginActivity.this, GuestMainActivity.class);
                             startActivity(intent3);
+                            CacheUtils.putUserInfo(userInfo, LoginActivity.this);
                             finish();
                             break;
 
@@ -108,7 +114,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
 
                 @Override
-                public void onFailure(Call<DataResult<Byte>> call, Throwable t) {
+                public void onFailure(Call<DataResult<UserInfo>> call, Throwable t) {
                     Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
                 }
             });

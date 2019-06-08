@@ -1,4 +1,4 @@
-package com.example.farming;
+package com.example.farming.http;
 
 import com.example.farming.entity.DataResult;
 import com.example.farming.entity.UserInfo;
@@ -10,7 +10,7 @@ import retrofit2.http.POST;
 public interface LoginService {
 
     @POST("account/login")
-    Call<DataResult<Byte>> login(@Body UserInfo userInfo);
+    Call<DataResult<UserInfo>> login(@Body UserInfo userInfo);
 
 
     @POST("account/register")

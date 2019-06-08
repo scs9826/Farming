@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class PurchaseRecord {
     private Long id;
-    private Date date;
+    private String date;
 
     private String name;
 
@@ -20,11 +20,11 @@ public class PurchaseRecord {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -50,5 +50,16 @@ public class PurchaseRecord {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "PurchaseRecord{" +
+                "id=" + id +
+                ", date=" + date +
+                ", name='" + name + '\'' +
+                ", num=" + num +
+                ", price=" + price +
+                '}';
     }
 }

@@ -1,7 +1,10 @@
 package com.example.farming.entity;
 
 
-public class LandInfo {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class LandInfo implements Parcelable {
     private Long id;
 
     private Double square;
@@ -19,6 +22,58 @@ public class LandInfo {
     private Integer block;
 
     private String place;
+
+    public LandInfo(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            square = null;
+        } else {
+            square = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            uid = null;
+        } else {
+            uid = in.readLong();
+        }
+        region = in.readString();
+        if (in.readByte() == 0) {
+            regionSquare = null;
+        } else {
+            regionSquare = in.readDouble();
+        }
+        tag = in.readString();
+        if (in.readByte() == 0) {
+            tagSquare = null;
+        } else {
+            tagSquare = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            block = null;
+        } else {
+            block = in.readInt();
+        }
+        place = in.readString();
+    }
+
+    public static final Creator<LandInfo> CREATOR = new Creator<LandInfo>() {
+        @Override
+        public LandInfo createFromParcel(Parcel in) {
+            return new LandInfo(in);
+        }
+
+        @Override
+        public LandInfo[] newArray(int size) {
+            return new LandInfo[size];
+        }
+    };
+
+    public LandInfo() {
+
+    }
 
     public Long getId() {
         return id;
@@ -90,5 +145,65 @@ public class LandInfo {
 
     public void setPlace(String place) {
         this.place = place == null ? null : place.trim();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(id);
+        }
+        if (square == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(square);
+        }
+        if (uid == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(uid);
+        }
+        dest.writeString(region);
+        if (regionSquare == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(regionSquare);
+        }
+        dest.writeString(tag);
+        if (tagSquare == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(tagSquare);
+        }
+        if (block == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(block);
+        }
+        dest.writeString(place);
+    }
+
+    @Override
+    public String toString() {
+        return "square=" + square +
+                ", uid=" + uid +
+                ", region='" + region + '\'' +
+                ", regionSquare=" + regionSquare +
+                ", tag='" + tag + '\'' +
+                ", tagSquare=" + tagSquare +
+                ", block=" + block +
+                ", place='" + place;
     }
 }
