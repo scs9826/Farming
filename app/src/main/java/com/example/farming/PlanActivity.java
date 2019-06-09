@@ -8,8 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.farming.adapter.PlanAdapter;
 import com.example.farming.constants.Constants;
 import com.example.farming.entity.DataResult;
+import com.example.farming.entity.PlanDel;
 import com.example.farming.entity.PlanManage;
 import com.example.farming.http.AdminService;
 import com.example.farming.util.SingleTopRetrofit;
@@ -69,11 +71,19 @@ public class PlanActivity extends AppCompatActivity {
                 landManageAdd.setVisibility(View.GONE);
                 break;
             case Constants.GUEST:
+                landManageAdd.setVisibility(View.GONE);
                 break;
             case Constants.MARKET:
                 break;
             case Constants.TECH:
-                landManageAdd.setVisibility(View.GONE);
+                landManageAdd.setVisibility(View.VISIBLE);
+                landManageAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(PlanActivity.this, PlanAddActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 break;
 
         }

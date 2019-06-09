@@ -1,5 +1,5 @@
 
-package com.example.farming;
+package com.example.farming.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,22 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.farming.constants.Constants;
-import com.example.farming.entity.DataResult;
+import com.example.farming.R;
 import com.example.farming.entity.FeeInfo;
-import com.example.farming.entity.HarvestManage;
-import com.example.farming.entity.Ingredient;
-import com.example.farming.http.AdminService;
-import com.example.farming.util.SingleTopRetrofit;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class FeeAdapter extends RecyclerView.Adapter<FeeAdapter.MyViewHolder> {
 

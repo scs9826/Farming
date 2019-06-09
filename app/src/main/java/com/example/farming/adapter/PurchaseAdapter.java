@@ -1,4 +1,4 @@
-package com.example.farming;
+package com.example.farming.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.farming.R;
 import com.example.farming.constants.Constants;
 import com.example.farming.entity.DataResult;
-import com.example.farming.entity.LandInfo;
 import com.example.farming.entity.PurchaseRecord;
 import com.example.farming.http.AdminService;
 import com.example.farming.util.SingleTopRetrofit;
-import com.example.farming.util.TimeUtils;
 
 import java.util.List;
 

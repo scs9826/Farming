@@ -8,10 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.farming.adapter.FeeAdapter;
 import com.example.farming.constants.Constants;
 import com.example.farming.entity.DataResult;
+import com.example.farming.entity.Entity;
 import com.example.farming.entity.FeeInfo;
-import com.example.farming.entity.HarvestManage;
 import com.example.farming.http.AdminService;
 import com.example.farming.util.SingleTopRetrofit;
 
@@ -75,14 +76,7 @@ public class FeeActivity extends AppCompatActivity {
             case Constants.MARKET:
                 break;
             case Constants.TECH:
-                landManageAdd.setVisibility(View.VISIBLE);
-                landManageAdd.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(FeeActivity.this, PurchaseActivity.class);
-                        startActivity(intent);
-                    }
-                });
+                landManageAdd.setVisibility(View.GONE);
                 break;
 
         }

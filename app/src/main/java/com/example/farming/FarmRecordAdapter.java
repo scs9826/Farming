@@ -7,12 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.farming.constants.Constants;
+import com.example.farming.entity.DataResult;
 import com.example.farming.entity.FarmworkRecord;
 import com.example.farming.entity.PlanManage;
+import com.example.farming.http.TechService;
+import com.example.farming.util.SingleTopRetrofit;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class FarmRecordAdapter extends RecyclerView.Adapter<FarmRecordAdapter.MyViewHolder> {
 
@@ -30,40 +39,40 @@ public class FarmRecordAdapter extends RecyclerView.Adapter<FarmRecordAdapter.My
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.purchase_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.plan_item, viewGroup, false);
         final MyViewHolder holder = new MyViewHolder(view);
-        if (identity == Constants.ADMIN) {
+        if (identity != Constants.TECH) {
             holder.delete.setVisibility(View.GONE);
         } else {
-//            holder.delete.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    final int pos = holder.getAdapterPosition();
-//                    final Ingredient landInfo = entityList.get(pos);
-//                    Retrofit retrofit = SingleTopRetrofit.getInstance();
-//                    AdminService s = retrofit.create(AdminService.class);
-//                    Call<DataResult<Boolean>> dataResultCall = s.addProduct(landInfo.getId());
-//                    dataResultCall.enqueue(new Callback<DataResult<Boolean>>() {
-//                        @Override
-//                        public void onResponse(Call<DataResult<Boolean>> call, Response<DataResult<Boolean>> response) {
-//                            DataResult<Boolean> dataResult = response.body();
-//                            if (dataResult != null && dataResult.getData()) {
-//                                Toast.makeText(context, "删除成功", Toast.LENGTH_SHORT).show();
-//                                notifyDataSetChanged();
-//                                entityList.remove(landInfo);
-//                            } else {
-//                                Toast.makeText(context, "删除失败", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<DataResult<Boolean>> call, Throwable t) {
-//
-//                            Toast.makeText(context, "删除失败", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
-//            });
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final int pos = holder.getAdapterPosition();
+                    final FarmworkRecord landInfo = entityList.get(pos);
+                    Retrofit retrofit = SingleTopRetrofit.getInstance();
+                    TechService s = retrofit.create(TechService.class);
+                    Call<DataResult<Boolean>> dataResultCall = s.farmwork(landInfo.getId());
+                    dataResultCall.enqueue(new Callback<DataResult<Boolean>>() {
+                        @Override
+                        public void onResponse(Call<DataResult<Boolean>> call, Response<DataResult<Boolean>> response) {
+                            DataResult<Boolean> dataResult = response.body();
+                            if (dataResult != null && dataResult.getData()) {
+                                Toast.makeText(context, "删除成功", Toast.LENGTH_SHORT).show();
+                                notifyDataSetChanged();
+                                entityList.remove(landInfo);
+                            } else {
+                                Toast.makeText(context, "删除失败", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<DataResult<Boolean>> call, Throwable t) {
+
+                            Toast.makeText(context, "删除失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
         }
         return holder;
     }

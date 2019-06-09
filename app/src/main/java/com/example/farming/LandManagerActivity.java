@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.farming.adapter.MyAdapter;
 import com.example.farming.constants.Constants;
+import com.example.farming.entity.Entity;
 import com.example.farming.entity.LandInfo;
 
 import java.util.ArrayList;

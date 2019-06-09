@@ -5,7 +5,7 @@ import java.util.Date;
 public class PlanDel {
     private Long id;
 
-    private Date temDate;
+    private String temDate;
 
     private String reason;
 
@@ -19,11 +19,11 @@ public class PlanDel {
         this.id = id;
     }
 
-    public Date getTemDate() {
+    public String getTemDate() {
         return temDate;
     }
 
-    public void setTemDate(Date temDate) {
+    public void setTemDate(String temDate) {
         this.temDate = temDate;
     }
 

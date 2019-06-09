@@ -1,4 +1,4 @@
-package com.example.farming;
+package com.example.farming.entity;
 
 public class Entity {
     private String item;

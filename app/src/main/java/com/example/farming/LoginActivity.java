@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         return;
                     }
                     byte byt = dataResult.getData().getIdentity();
+                    UserInfo i = dataResult.getData();
                     switch (byt) {
                         default:
                             Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
@@ -88,25 +89,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         case Constants.ADMIN:
                             Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
                             startActivity(intent);
-                            CacheUtils.putUserInfo(userInfo, LoginActivity.this);
+                            CacheUtils.putUserInfo(i, LoginActivity.this);
                             finish();
                             break;
                         case Constants.TECH:
                             Intent intent1 = new Intent(LoginActivity.this, TechMainActivity.class);
                             startActivity(intent1);
-                            CacheUtils.putUserInfo(userInfo, LoginActivity.this);
+                            CacheUtils.putUserInfo(i, LoginActivity.this);
                             finish();
                             break;
                         case Constants.MARKET:
                             Intent intent2 = new Intent(LoginActivity.this, MarketMainActivity.class);
                             startActivity(intent2);
-                            CacheUtils.putUserInfo(userInfo, LoginActivity.this);
+                            CacheUtils.putUserInfo(i, LoginActivity.this);
                             finish();
                             break;
                         case Constants.GUEST:
                             Intent intent3 = new Intent(LoginActivity.this, GuestMainActivity.class);
                             startActivity(intent3);
-                            CacheUtils.putUserInfo(userInfo, LoginActivity.this);
+                            CacheUtils.putUserInfo(i, LoginActivity.this);
                             finish();
                             break;
 
@@ -137,8 +138,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void initView() {
         editText.setText(getIntent().getStringExtra("userName") == null ? "" : getIntent().getStringExtra("userName"));
         editText2.setText(getIntent().getStringExtra("pwd") == null ? "" : getIntent().getStringExtra("pwd"));
-        editText.setText("tech");
-        editText2.setText("20181225");
+        editText.setText("guest");
+        editText2.setText("");
     }
 
 }

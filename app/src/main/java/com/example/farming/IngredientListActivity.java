@@ -8,11 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.farming.adapter.IngredientAdapter;
 import com.example.farming.constants.Constants;
 import com.example.farming.entity.DataResult;
+import com.example.farming.entity.Entity;
 import com.example.farming.entity.Ingredient;
-import com.example.farming.entity.LandInfo;
-import com.example.farming.entity.PurchaseRecord;
 import com.example.farming.http.AdminService;
 import com.example.farming.util.SingleTopRetrofit;
 
@@ -79,7 +79,7 @@ public class IngredientListActivity extends AppCompatActivity {
                 landManageAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(IngredientListActivity.this, PurchaseActivity.class);
+                        Intent intent = new Intent(IngredientListActivity.this, IngredientAddActivity.class);
                         startActivity(intent);
                     }
                 });

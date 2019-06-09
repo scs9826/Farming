@@ -1,4 +1,4 @@
-package com.example.farming;
+package com.example.farming.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.farming.R;
 import com.example.farming.constants.Constants;
 import com.example.farming.entity.DataResult;
-import com.example.farming.entity.FeeInfo;
-import com.example.farming.entity.HarvestManage;
+import com.example.farming.entity.LandInfo;
 import com.example.farming.http.AdminService;
 import com.example.farming.util.SingleTopRetrofit;
 
@@ -23,13 +23,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class RealHarvestAdapter extends RecyclerView.Adapter<RealHarvestAdapter.MyViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    private List<HarvestManage> entityList;//获取需要显示的全部数据
+    private List<LandInfo> entityList;//获取需要显示的全部数据
     private int identity;
     private Context context;
 
-    public RealHarvestAdapter(List<HarvestManage> landInfoList, int identity) {
+    public MyAdapter(List<LandInfo> landInfoList, int identity) {
         entityList = landInfoList;
         this.identity = identity;
     }
@@ -39,19 +39,19 @@ public class RealHarvestAdapter extends RecyclerView.Adapter<RealHarvestAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.harvest_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
         final MyViewHolder holder = new MyViewHolder(view);
-        if (identity == Constants.ADMIN) {
+        if (identity != Constants.ADMIN) {
             holder.delete.setVisibility(View.GONE);
         } else {
             holder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     final int pos = holder.getAdapterPosition();
-                    final HarvestManage landInfo = entityList.get(pos);
+                    final LandInfo landInfo = entityList.get(pos);
                     Retrofit retrofit = SingleTopRetrofit.getInstance();
                     AdminService s = retrofit.create(AdminService.class);
-                    Call<DataResult<Boolean>> dataResultCall = s.addProduct(landInfo.getId());
+                    Call<DataResult<Boolean>> dataResultCall = s.landDel(landInfo.getId());
                     dataResultCall.enqueue(new Callback<DataResult<Boolean>>() {
                         @Override
                         public void onResponse(Call<DataResult<Boolean>> call, Response<DataResult<Boolean>> response) {
@@ -79,11 +79,14 @@ public class RealHarvestAdapter extends RecyclerView.Adapter<RealHarvestAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        final HarvestManage landInfo = entityList.get(i);
-        myViewHolder.date.setText(landInfo.getDate());
-        myViewHolder.landId.setText(landInfo.getHarvestNum().toString());
-        myViewHolder.fee.setText(landInfo.getSeedName());
-        myViewHolder.farmwork.setText(landInfo.getPrice().toString());
+        final LandInfo landInfo = entityList.get(i);
+        if (identity == Constants.ADMIN) {
+
+        }
+        myViewHolder.block.setText(String.valueOf(landInfo.getBlock()));
+        myViewHolder.region.setText(landInfo.getRegion() + " : " + landInfo.getRegionSquare());
+        myViewHolder.palce.setText(landInfo.getPlace() + " : " + landInfo.getSquare());
+        myViewHolder.tag.setText(landInfo.getTag() + " : " + landInfo.getTagSquare());
     }
 
     @Override
@@ -93,29 +96,19 @@ public class RealHarvestAdapter extends RecyclerView.Adapter<RealHarvestAdapter.
 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView date;
-        TextView landId;
-        TextView fee;
-        TextView farmwork;
+        TextView region;
+        TextView block;
+        TextView tag;
+        TextView palce;
         TextView delete;
-
-        private void findViews() {
-            date = itemView.findViewById( R.id.date );
-            landId = itemView.findViewById( R.id.land_id );
-            fee = itemView.findViewById( R.id.fee );
-            farmwork = itemView.findViewById( R.id.farmwork );
-            delete = itemView.findViewById( R.id.delete );
-        }
-
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            date = itemView.findViewById( R.id.date );
-            landId = itemView.findViewById( R.id.land_id );
-            fee = itemView.findViewById( R.id.fee );
-            farmwork = itemView.findViewById( R.id.farmwork );
-            delete = itemView.findViewById( R.id.delete );
+            region = itemView.findViewById(R.id.region);
+            block = itemView.findViewById(R.id.block);
+            tag = itemView.findViewById(R.id.tag);
+            palce = itemView.findViewById(R.id.palce);
+            delete = itemView.findViewById(R.id.delete);
         }
-
     }
 }

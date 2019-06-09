@@ -1,4 +1,4 @@
-package com.example.farming;
+package com.example.farming.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,19 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.farming.R;
 import com.example.farming.constants.Constants;
-import com.example.farming.entity.Ingredient;
-import com.example.farming.entity.PlanManage;
 
 import java.util.List;
 
-public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.MyViewHolder> {
+public class ProductMaterialAdapter extends RecyclerView.Adapter<ProductMaterialAdapter.MyViewHolder> {
 
-    private List<PlanManage> entityList;//获取需要显示的全部数据
+    private List<String> entityList;//获取需要显示的全部数据
     private int identity;
     private Context context;
 
-    public PlanAdapter(List<PlanManage> landInfoList, int identity) {
+    public ProductMaterialAdapter(List<String> landInfoList, int identity) {
         entityList = landInfoList;
         this.identity = identity;
     }
@@ -30,7 +29,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.plan_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.product_material_item, viewGroup, false);
         final MyViewHolder holder = new MyViewHolder(view);
         if (identity == Constants.ADMIN) {
             holder.delete.setVisibility(View.GONE);
@@ -39,7 +38,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.MyViewHolder> 
 //                @Override
 //                public void onClick(View v) {
 //                    final int pos = holder.getAdapterPosition();
-//                    final Ingredient landInfo = entityList.get(pos);
+//                    final String landInfo = entityList.get(pos);
 //                    Retrofit retrofit = SingleTopRetrofit.getInstance();
 //                    AdminService s = retrofit.create(AdminService.class);
 //                    Call<DataResult<Boolean>> dataResultCall = s.addProduct(landInfo.getId());
@@ -70,13 +69,8 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        final PlanManage landInfo = entityList.get(i);
-        myViewHolder.date.setText(String.valueOf((landInfo.getLandId())));
-        myViewHolder.landId.setText(landInfo.getName());
-        myViewHolder.fee.setText(landInfo.getPlanDate());
-        myViewHolder.farmwork.setText(landInfo.getUpMarketDate() + ":" + landInfo.getUpHarvest() + "元");
-        myViewHolder.ingredient.setText(landInfo.getPeakDate() + ":" + landInfo.getPeakHarvest() + "元");
-        myViewHolder.seed.setText(landInfo.getDownMarketDate());
+        final String landInfo = entityList.get(i);
+        myViewHolder.name.setText(landInfo);
     }
 
     @Override
@@ -86,23 +80,13 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.MyViewHolder> 
 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView date;
-        TextView landId;
-        TextView fee;
-        TextView farmwork;
-        TextView ingredient;
-        TextView seed;
+        TextView name;
         TextView delete;
-
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            date = itemView.findViewById(R.id.date);
-            landId = itemView.findViewById(R.id.land_id);
-            fee = itemView.findViewById(R.id.fee);
-            farmwork = itemView.findViewById(R.id.farmwork);
-            ingredient = itemView.findViewById(R.id.ingredient);
-            seed = itemView.findViewById(R.id.seed);
+            name = itemView. findViewById(R.id.name);
             delete = itemView.findViewById(R.id.delete);
         }
+
     }
 }
