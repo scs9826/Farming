@@ -6,7 +6,7 @@ import java.util.Date;
 public class HarvestManage {
     private Long id;
 
-    private Date date;
+    private String date;
 
     private String seedName;
 
@@ -22,11 +22,11 @@ public class HarvestManage {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

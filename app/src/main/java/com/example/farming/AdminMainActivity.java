@@ -1,20 +1,28 @@
 package com.example.farming;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.farming.constants.CacheUtils;
 import com.example.farming.constants.Constants;
 import com.example.farming.entity.DataResult;
 import com.example.farming.entity.LandInfo;
 import com.example.farming.http.AdminService;
 import com.example.farming.util.SingleTopRetrofit;
+import com.example.farming.util.TimeUtils;
 
+import org.w3c.dom.Comment;
+
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,16 +114,62 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
             startActivity(intent);
         } else if ( v == adminPlan ) {
             // Handle clicks for adminPlan
+            Intent intent = new Intent(AdminMainActivity.this, PlanActivity.class);
+            intent.putExtra("identity", Constants.ADMIN);
+            startActivity(intent);
         } else if ( v == adminFarmwork ) {
             // Handle clicks for adminFarmwork
+            Intent intent = new Intent(AdminMainActivity.this, ProductMaterialActivity.class);
+            intent.putExtra("identity", Constants.ADMIN);
+            startActivity(intent);
         } else if ( v == adminRealHarvest ) {
             // Handle clicks for adminRealHarvest
+            Intent intent = new Intent(AdminMainActivity.this, RealHarvestActivity.class);
+            intent.putExtra("identity", Constants.ADMIN);
+            startActivity(intent);
         } else if ( v == adminNoticeButton ) {
             // Handle clicks for adminNoticeButton
+
         } else if ( v == adminPredictHarvest ) {
             // Handle clicks for adminPredictHarvest
+            AlertDialog.Builder builder = new AlertDialog.Builder(AdminMainActivity.this);
+            View view = View.inflate(AdminMainActivity.this, R.layout.comment_content, null);
+            builder.setView(view);
+            final EditText editText = view.findViewById(R.id.editText);
+            builder.setTitle("预测");
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Retrofit retrofit = SingleTopRetrofit.getInstance();
+                    AdminService adminService = retrofit.create(AdminService.class);
+                    Call<DataResult<Long>> call = null;
+                    try {
+                        call = adminService.forPlan(TimeUtils.formatString(editText.getText().toString()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    call.enqueue(new Callback<DataResult<Long>>() {
+                        @Override
+                        public void onResponse(Call<DataResult<Long>> call, Response<DataResult<Long>> response) {
+                            DataResult<Long> dataResult = response.body();
+                            if (dataResult != null && dataResult.getData() != null) {
+                                Toast.makeText(AdminMainActivity.this, "预计采收量是:" + dataResult.getData(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<DataResult<Long>> call, Throwable t) {
+                            Toast.makeText(AdminMainActivity.this, "获取数据失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+            builder.show();
         } else if ( v == adminProfit ) {
             // Handle clicks for adminProfit
+            Intent intent = new Intent(AdminMainActivity.this, FeeActivity.class);
+            intent.putExtra("identity", Constants.ADMIN);
+            startActivity(intent);
         }
     }
 

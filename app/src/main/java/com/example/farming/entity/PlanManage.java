@@ -8,21 +8,21 @@ public class PlanManage {
 
     private String name;
 
-    private Date planDate;
+    private String planDate;
 
-    private Date sowDate;
+    private String sowDate;
 
     private Long landId;
 
-    private Date upMarketDate;
+    private String upMarketDate;
 
     private Double upHarvest;
 
-    private Date peakDate;
+    private String peakDate;
 
     private Double peakHarvest;
 
-    private Date downMarketDate;
+    private String downMarketDate;
 
     public Long getId() {
         return id;
@@ -40,19 +40,19 @@ public class PlanManage {
         this.name = name == null ? null : name.trim();
     }
 
-    public Date getPlanDate() {
+    public String getPlanDate() {
         return planDate;
     }
 
-    public void setPlanDate(Date planDate) {
+    public void setPlanDate(String planDate) {
         this.planDate = planDate;
     }
 
-    public Date getSowDate() {
+    public String getSowDate() {
         return sowDate;
     }
 
-    public void setSowDate(Date sowDate) {
+    public void setSowDate(String sowDate) {
         this.sowDate = sowDate;
     }
 
@@ -64,11 +64,11 @@ public class PlanManage {
         this.landId = landId;
     }
 
-    public Date getUpMarketDate() {
+    public String getUpMarketDate() {
         return upMarketDate;
     }
 
-    public void setUpMarketDate(Date upMarketDate) {
+    public void setUpMarketDate(String upMarketDate) {
         this.upMarketDate = upMarketDate;
     }
 
@@ -80,11 +80,11 @@ public class PlanManage {
         this.upHarvest = upHarvest;
     }
 
-    public Date getPeakDate() {
+    public String getPeakDate() {
         return peakDate;
     }
 
-    public void setPeakDate(Date peakDate) {
+    public void setPeakDate(String peakDate) {
         this.peakDate = peakDate;
     }
 
@@ -96,11 +96,11 @@ public class PlanManage {
         this.peakHarvest = peakHarvest;
     }
 
-    public Date getDownMarketDate() {
+    public String getDownMarketDate() {
         return downMarketDate;
     }
 
-    public void setDownMarketDate(Date downMarketDate) {
+    public void setDownMarketDate(String downMarketDate) {
         this.downMarketDate = downMarketDate;
     }
 }

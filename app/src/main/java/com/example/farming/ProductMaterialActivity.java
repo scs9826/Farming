@@ -11,31 +11,33 @@ import android.widget.ImageView;
 import com.example.farming.constants.Constants;
 import com.example.farming.entity.DataResult;
 import com.example.farming.entity.Ingredient;
-import com.example.farming.entity.LandInfo;
-import com.example.farming.entity.PurchaseRecord;
+import com.example.farming.entity.ProductMaterial;
 import com.example.farming.http.AdminService;
 import com.example.farming.util.SingleTopRetrofit;
+import com.example.farming.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class IngredientListActivity extends AppCompatActivity {
+public class ProductMaterialActivity extends AppCompatActivity {
+
     private RecyclerView regionRecyclerView;
     private List<Entity> regionList;
-    private IngredientAdapter regionAdapter;
+    private ProductMaterialAdapter regionAdapter;
     private ImageView landManageAdd;
     private int identity;
-    private List<Ingredient> landInfoList = new ArrayList<>();
+    private List<String> strings = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ingredient_list);
+        setContentView(R.layout.activity_product_material);
         initData();
     }
 
@@ -47,20 +49,32 @@ public class IngredientListActivity extends AppCompatActivity {
         identity = getIntent.getByteExtra("identity", (byte) 0);
         Retrofit retrofit = SingleTopRetrofit.getInstance();
         AdminService adminService = retrofit.create(AdminService.class);
-        Call<DataResult<List<Ingredient>>> call = adminService.findIngredient();
-        call.enqueue(new Callback<DataResult<List<Ingredient>>>() {
+        Call<DataResult<ProductMaterial>> call = adminService.findMaterial();
+        call.enqueue(new Callback<DataResult<ProductMaterial>>() {
             @Override
-            public void onResponse(Call<DataResult<List<Ingredient>>> call, Response<DataResult<List<Ingredient>>> response) {
-                DataResult<List<Ingredient>> dataResult = response.body();
+            public void onResponse(Call<DataResult<ProductMaterial>> call, Response<DataResult<ProductMaterial>> response) {
+                DataResult<ProductMaterial> dataResult = response.body();
                 if (dataResult != null) {
-                    landInfoList = dataResult.getData();
-                    regionAdapter = new IngredientAdapter(landInfoList, identity);
+                    ProductMaterial productMaterial = dataResult.getData();
+                    Map<String, Integer> seedMap = productMaterial.getSeed();
+                    Map<String, Integer> ingredientMap = productMaterial.getIngredient();
+                    for (Map.Entry<String, Integer> entry : seedMap.entrySet()) {
+                        if (!StringUtil.isEmpty(entry.getKey())) {
+                            strings.add(entry.getKey() + " : " + entry.getValue());
+                        }
+                    }
+                    for (Map.Entry<String, Integer> entry : ingredientMap.entrySet()) {
+                        if (!StringUtil.isEmpty(entry.getKey())) {
+                            strings.add(entry.getKey() + " : " + entry.getValue());
+                        }
+                    }
+                    regionAdapter = new ProductMaterialAdapter(strings, identity);
                     regionRecyclerView.setAdapter(regionAdapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<DataResult<List<Ingredient>>> call, Throwable t) {
+            public void onFailure(Call<DataResult<ProductMaterial>> call, Throwable t) {
 
             }
         });
@@ -79,7 +93,7 @@ public class IngredientListActivity extends AppCompatActivity {
                 landManageAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(IngredientListActivity.this, PurchaseActivity.class);
+                        Intent intent = new Intent(ProductMaterialActivity.this, PurchaseActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -87,5 +101,4 @@ public class IngredientListActivity extends AppCompatActivity {
 
         }
     }
-
 }

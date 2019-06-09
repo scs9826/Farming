@@ -1,10 +1,15 @@
 package com.example.farming.http;
 
 import com.example.farming.entity.DataResult;
+import com.example.farming.entity.FeeInfo;
+import com.example.farming.entity.HarvestManage;
 import com.example.farming.entity.Ingredient;
 import com.example.farming.entity.LandInfo;
+import com.example.farming.entity.PlanManage;
+import com.example.farming.entity.ProductMaterial;
 import com.example.farming.entity.PurchaseRecord;
 
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,5 +43,21 @@ public interface AdminService {
 
     @POST("admin/findIngredient")
     Call<DataResult<List<Ingredient>>> findIngredient();
+
+    @POST("admin/plan")
+    Call<DataResult<List<PlanManage>>> findPlan();
+
+    @GET("admin/material")
+    Call<DataResult<ProductMaterial>> findMaterial();
+
+    @GET("admin/harvestManage")
+    Call<DataResult<List<HarvestManage>>> forHarvestManage();
+
+    @POST("admin/planManage")
+    @FormUrlEncoded
+    Call<DataResult<Long>> forPlan(@Field(value = "date", encoded = true) Date date);
+
+    @POST("admin/feeUpDown")
+    Call<DataResult<List<FeeInfo>>> forFee();
 
 }

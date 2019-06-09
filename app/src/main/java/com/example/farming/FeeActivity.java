@@ -10,9 +10,8 @@ import android.widget.ImageView;
 
 import com.example.farming.constants.Constants;
 import com.example.farming.entity.DataResult;
-import com.example.farming.entity.Ingredient;
-import com.example.farming.entity.LandInfo;
-import com.example.farming.entity.PurchaseRecord;
+import com.example.farming.entity.FeeInfo;
+import com.example.farming.entity.HarvestManage;
 import com.example.farming.http.AdminService;
 import com.example.farming.util.SingleTopRetrofit;
 
@@ -24,18 +23,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class IngredientListActivity extends AppCompatActivity {
+public class FeeActivity extends AppCompatActivity {
+
     private RecyclerView regionRecyclerView;
     private List<Entity> regionList;
-    private IngredientAdapter regionAdapter;
+    private FeeAdapter regionAdapter;
     private ImageView landManageAdd;
     private int identity;
-    private List<Ingredient> landInfoList = new ArrayList<>();
+    private List<FeeInfo> landInfoList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ingredient_list);
+        setContentView(R.layout.activity_fee);
         initData();
     }
 
@@ -47,20 +47,20 @@ public class IngredientListActivity extends AppCompatActivity {
         identity = getIntent.getByteExtra("identity", (byte) 0);
         Retrofit retrofit = SingleTopRetrofit.getInstance();
         AdminService adminService = retrofit.create(AdminService.class);
-        Call<DataResult<List<Ingredient>>> call = adminService.findIngredient();
-        call.enqueue(new Callback<DataResult<List<Ingredient>>>() {
+        Call<DataResult<List<FeeInfo>>> call = adminService.forFee();
+        call.enqueue(new Callback<DataResult<List<FeeInfo>>>() {
             @Override
-            public void onResponse(Call<DataResult<List<Ingredient>>> call, Response<DataResult<List<Ingredient>>> response) {
-                DataResult<List<Ingredient>> dataResult = response.body();
+            public void onResponse(Call<DataResult<List<FeeInfo>>> call, Response<DataResult<List<FeeInfo>>> response) {
+                DataResult<List<FeeInfo>> dataResult = response.body();
                 if (dataResult != null) {
                     landInfoList = dataResult.getData();
-                    regionAdapter = new IngredientAdapter(landInfoList, identity);
+                    regionAdapter = new FeeAdapter(landInfoList, identity);
                     regionRecyclerView.setAdapter(regionAdapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<DataResult<List<Ingredient>>> call, Throwable t) {
+            public void onFailure(Call<DataResult<List<FeeInfo>>> call, Throwable t) {
 
             }
         });
@@ -79,7 +79,7 @@ public class IngredientListActivity extends AppCompatActivity {
                 landManageAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(IngredientListActivity.this, PurchaseActivity.class);
+                        Intent intent = new Intent(FeeActivity.this, PurchaseActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -87,5 +87,4 @@ public class IngredientListActivity extends AppCompatActivity {
 
         }
     }
-
 }
