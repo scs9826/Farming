@@ -45,7 +45,6 @@
             android:id="@+id/admin_notice_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="lalalala"
             android:padding="20dp"/>
 
     </LinearLayout>

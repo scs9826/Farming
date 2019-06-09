@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RealHarvestAddActivity"></activity>
+        <activity android:name=".NoticeActivity"
+            android:theme="@style/FullScreen" />
+        <activity android:name=".RealHarvestAddActivity" />
         <activity
             android:name=".FarmworkRecordAddActivity"
             android:theme="@style/FullScreen" />

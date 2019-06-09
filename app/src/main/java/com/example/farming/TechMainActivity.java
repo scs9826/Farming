@@ -3,6 +3,7 @@ package com.example.farming;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.example.farming.entity.DataResult;
 import com.example.farming.entity.FarmworkRecord;
 import com.example.farming.entity.LandInfo;
 import com.example.farming.http.AdminService;
+import com.example.farming.http.LoginService;
 import com.example.farming.http.TechService;
 import com.example.farming.util.SingleTopRetrofit;
 import com.example.farming.util.TimeUtils;
@@ -43,6 +45,7 @@ public class TechMainActivity extends AppCompatActivity implements View.OnClickL
     private Button techNoticeButton;
     private Button techPredictHarvest;
     private Button techProfit;
+    private List<String> noticeList;
 
     /**
      * Find the Views in the layout<br />
@@ -131,6 +134,9 @@ public class TechMainActivity extends AppCompatActivity implements View.OnClickL
             startActivity(intent);
         } else if ( v == techNoticeButton ) {
             // Handle clicks for techNoticeButton
+            Intent intent = new Intent(this, NoticeActivity.class);
+            intent.putStringArrayListExtra("list", (ArrayList<String>) noticeList);
+            startActivityForResult(intent, 1);
         } else if ( v == techPredictHarvest ) {
             // Handle clicks for techPredictHarvest
             AlertDialog.Builder builder = new AlertDialog.Builder(TechMainActivity.this);
@@ -144,11 +150,7 @@ public class TechMainActivity extends AppCompatActivity implements View.OnClickL
                     Retrofit retrofit = SingleTopRetrofit.getInstance();
                     AdminService adminService = retrofit.create(AdminService.class);
                     Call<DataResult<Long>> call = null;
-                    try {
-                        call = adminService.forPlan(TimeUtils.formatString(editText.getText().toString()));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    call = adminService.forPlan(editText.getText().toString());
                     call.enqueue(new Callback<DataResult<Long>>() {
                         @Override
                         public void onResponse(Call<DataResult<Long>> call, Response<DataResult<Long>> response) {
@@ -180,5 +182,36 @@ public class TechMainActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tech_main);
         findViews();
+        Retrofit retrofit = SingleTopRetrofit.getInstance();
+        LoginService service = retrofit.create(LoginService.class);
+        Call<DataResult<List<String>>> call = service.notice();
+        call.enqueue(new Callback<DataResult<List<String>>>() {
+            @Override
+            public void onResponse(Call<DataResult<List<String>>> call, Response<DataResult<List<String>>> response) {
+                DataResult<List<String>> dataResult = response.body();
+                if (dataResult != null && dataResult.getData() != null && !dataResult.getData().isEmpty()) {
+                    techNoticeText.setText(dataResult.getData().get(0) + "就要上市啦!!!");
+                    noticeList = dataResult.getData();
+                } else {
+                    techNoticeText.setText("当前无提醒!!!");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataResult<List<String>>> call, Throwable t) {
+                techNoticeText.setText("当前无提醒!!!");
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    noticeList = data.getStringArrayListExtra("notice");
+                    techNoticeText.setText(noticeList.get(0) + "就要上市啦!!!");
+                }
+                break;
+        }
     }
 }

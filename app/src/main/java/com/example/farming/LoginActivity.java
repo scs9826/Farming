@@ -138,8 +138,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void initView() {
         editText.setText(getIntent().getStringExtra("userName") == null ? "" : getIntent().getStringExtra("userName"));
         editText2.setText(getIntent().getStringExtra("pwd") == null ? "" : getIntent().getStringExtra("pwd"));
-        editText.setText("guest");
-        editText2.setText("");
+//        editText.setText("guest");
+//        editText2.setText("");
     }
 
 }

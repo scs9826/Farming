@@ -2,22 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="101dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/region"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -25,59 +25,20 @@
                 android:paddingTop="15dp"
                 android:text="lalala"
                 android:textSize="16sp" />
-
-
-            <TextView
-                android:id="@+id/land_id"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:paddingTop="15dp"
-                android:text="lalala"
-                android:textSize="16sp" />
-
 
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="100dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/fee"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:paddingTop="15dp"
-                android:text="lalala"
-                android:textSize="16sp" />
-
-
-            <TextView
-                android:id="@+id/farmwork"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:paddingTop="15dp"
-                android:text="lalala"
-                android:textSize="16sp" />
-
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/delete"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:background="#E0001A"
             android:textSize="16sp"
             android:gravity="center"
-            android:text="删除"/>
+            android:text="置顶"
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
 

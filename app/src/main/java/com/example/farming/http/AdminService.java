@@ -55,7 +55,7 @@ public interface AdminService {
 
     @POST("admin/planManage")
     @FormUrlEncoded
-    Call<DataResult<Long>> forPlan(@Field(value = "date", encoded = true) Date date);
+    Call<DataResult<Long>> forPlan(@Field(value = "date", encoded = true) String date);
 
     @POST("admin/feeUpDown")
     Call<DataResult<List<FeeInfo>>> forFee();

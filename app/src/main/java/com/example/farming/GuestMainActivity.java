@@ -2,6 +2,7 @@ package com.example.farming;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,10 +15,13 @@ import android.widget.Toast;
 import com.example.farming.constants.Constants;
 import com.example.farming.entity.DataResult;
 import com.example.farming.http.AdminService;
+import com.example.farming.http.LoginService;
 import com.example.farming.util.SingleTopRetrofit;
 import com.example.farming.util.TimeUtils;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +33,7 @@ public class GuestMainActivity extends AppCompatActivity implements View.OnClick
     private Button gustNoticeButton;
     private Button gustPlan;
     private Button gustPredictHarvest;
+    private List<String> noticeList;
 
     /**
      * Find the Views in the layout<br />
@@ -57,12 +62,15 @@ public class GuestMainActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         if ( v == gustNoticeButton ) {
             // Handle clicks for gustNoticeButton
+            Intent intent = new Intent(this, NoticeActivity.class);
+            intent.putStringArrayListExtra("list", (ArrayList<String>) noticeList);
+            startActivity(intent);
         } else if ( v == gustPlan ) {
             // Handle clicks for gustPlan
 
             Intent intent = new Intent(GuestMainActivity.this, PlanActivity.class);
             intent.putExtra("identity", Constants.GUEST);
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         } else if ( v == gustPredictHarvest ) {
             // Handle clicks for gustPredictHarvest
             AlertDialog.Builder builder = new AlertDialog.Builder(GuestMainActivity.this);
@@ -76,11 +84,7 @@ public class GuestMainActivity extends AppCompatActivity implements View.OnClick
                     Retrofit retrofit = SingleTopRetrofit.getInstance();
                     AdminService adminService = retrofit.create(AdminService.class);
                     Call<DataResult<Long>> call = null;
-                    try {
-                        call = adminService.forPlan(TimeUtils.formatString(editText.getText().toString()));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    call = adminService.forPlan(editText.getText().toString());
                     call.enqueue(new Callback<DataResult<Long>>() {
                         @Override
                         public void onResponse(Call<DataResult<Long>> call, Response<DataResult<Long>> response) {
@@ -102,9 +106,41 @@ public class GuestMainActivity extends AppCompatActivity implements View.OnClick
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    noticeList = data.getStringArrayListExtra("notice");
+                    gustNoticeText.setText(noticeList.get(0) + "就要上市啦!!!");
+                }
+                break;
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main);
         findViews();
+        Retrofit retrofit = SingleTopRetrofit.getInstance();
+        LoginService service = retrofit.create(LoginService.class);
+        Call<DataResult<List<String>>> call = service.notice();
+        call.enqueue(new Callback<DataResult<List<String>>>() {
+            @Override
+            public void onResponse(Call<DataResult<List<String>>> call, Response<DataResult<List<String>>> response) {
+                DataResult<List<String>> dataResult = response.body();
+                if (dataResult != null && dataResult.getData() != null && !dataResult.getData().isEmpty()) {
+                    gustNoticeText.setText(dataResult.getData().get(0) + "就要上市啦!!!");
+                    noticeList = dataResult.getData();
+                } else {
+                    gustNoticeText.setText("当前无提醒!!!");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataResult<List<String>>> call, Throwable t) {
+                gustNoticeText.setText("当前无提醒!!!");
+            }
+        });
     }
 }
