@@ -1,3 +1,4 @@
+/*刘云杰*/
 package com.example.farming;
 
 import android.content.Intent;
@@ -49,7 +50,7 @@ public class LandManagerActivity extends AppCompatActivity {
                 landManageAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(LandManagerActivity.this, PurchaseActivity.class);
+                        Intent intent = new Intent(LandManagerActivity.this, LandAdd.class);
                         startActivity(intent);
                     }
                 });

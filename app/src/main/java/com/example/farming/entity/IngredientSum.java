@@ -1,3 +1,4 @@
+/*刘云杰*/
 package com.example.farming.entity;
 
 public class IngredientSum {
