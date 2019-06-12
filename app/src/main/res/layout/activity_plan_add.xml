@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:text="培肥配药(添加)"
+                android:text="生产计划(添加)"
                 android:textColor="#ffffff"
                 android:textSize="29sp" />
 
@@ -80,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="plan_date："
+
                     android:textSize="18sp"/>
 
                 <EditText
@@ -102,6 +103,7 @@
 
                 <EditText
                     android:id="@+id/sow_date"
+                    android:hint="xxxx-xx-xx"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -117,6 +119,7 @@
 
                 <EditText
                     android:id="@+id/up_market_date"
+                    android:hint="xxxx-xx-xx"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -147,6 +150,7 @@
 
                 <EditText
                     android:id="@+id/peak_date"
+                    android:hint="xxxx-xx-xx"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -177,6 +181,7 @@
 
                 <EditText
                     android:id="@+id/down_market_date"
+                    android:hint="xxxx-xx-xx"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>

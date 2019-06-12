@@ -79,7 +79,7 @@ public class RealHarvestActivity extends AppCompatActivity {
                 landManageAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(RealHarvestActivity.this, RealHarvestActivity.class);
+                        Intent intent = new Intent(RealHarvestActivity.this, RealHarvestAddActivity.class);
                         startActivity(intent);
                     }
                 });

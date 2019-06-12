@@ -78,14 +78,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 public void onResponse(Call<DataResult<UserInfo>> call, Response<DataResult<UserInfo>> response) {
                     DataResult<UserInfo> dataResult = response.body();
                     if (dataResult == null || dataResult.getStatus() == HttpStatus.HTTP_STATUS_AUTHORITY) {
-                        Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     byte byt = dataResult.getData().getIdentity();
                     UserInfo i = dataResult.getData();
                     switch (byt) {
                         default:
-                            Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
                             break;
                         case Constants.ADMIN:
                             Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);

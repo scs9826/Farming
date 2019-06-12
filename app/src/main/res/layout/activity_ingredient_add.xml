@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:text="培肥配药(添加)"
+                android:text="配肥配药(添加)"
                 android:textColor="#ffffff"
                 android:textSize="29sp" />
 
